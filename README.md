@@ -1,3 +1,7 @@
+**Moviespotting - The Idea**
+
+The idea is to build a social network where in people would share which movie they are watching currently. Something on the lines of Goodreads for movies.
+
 1. Make sure "nodejs" is installed, you can check this by running "node" command on terminal.
 2. Make sure "npm" is installed, you can check this by running "npm" command on terminal.
 3. Make sure "mongodb" is installed on your system and "mongod" binary file is in your path.
