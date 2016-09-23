@@ -1,0 +1,147 @@
+<!-- Include common header -->
+<% include header %>
+    <div class="row">
+        <div class="span7">
+            <h2><%= movie.name %></h2>
+            by
+            <a href="/user/showuserprofile/<%=movie.creatorId%>">
+                <strong><%= movie.creatorName %></strong>
+            </a>
+            on
+            <strong style="font-size:12px;" class="muted"><%= movie.creationDate.toDateString() %></strong>
+        </div>
+        <div class="span5 movie-profile-toolbar">
+            <ul class="inline">
+                <% if(movie.favorited.indexOf(userData.userId) === -1 ){ %>
+                    <li class="favorite" data-favorited="n" data-movieid="<%= movie.movieId%>">
+                      <i class="icon-heart icon-3x" data-toggle='tooltip' title='Favorite' data-placement='top'></i>
+                    </li>
+                  <% } %>
+                  <!-- favorited = yes-->
+                  <% if(movie.favorited.indexOf(userData.userId) !== -1 ) { %>
+                      <li class="favorite favorited" data-favorited="y" data-movieid="<%= movie.movieId%>">
+                        <i class="icon-heart icon-3x" data-toggle='tooltip' title='Favorite' data-placement='top'></i>
+                      </li>
+                  <% } %>
+                <li>
+                    <i class="icon-bookmark icon-3x default-grey-link wishlist" style="margin-left:20px;"  data-toggle='tooltip' title='Add/Remove from list' data-placement='top' data-movieid="<%= movie.movieId%>"></i>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="span4 shadow">
+            <div class="movie-item">
+                <ul class="inline movie-status-toolbar">
+                  <li><button class="btn btn-small btn-info" data-syslist="wanttowatch" data-movieid="<%= movie.movieId%>">Want to watch</button></li>
+                  <li><button class="btn btn-small" data-syslist="watched" data-movieid="<%= movie.movieId%>">Watched</button></li>
+                </ul>
+                <img src="<%= movie.coverPhotoLarge %>" class="movie-image-poster">
+            </div>
+        </div>
+        <div class="span5" style="text-align:justify">
+            <%if(typeof movie.userDefinedSummary !== 'undefined' && movie.userDefinedSummary !== ''){ %>
+                <!--<i class="icon-quote-left icon-3x pull-left" style="color:rgb(190, 190, 190)"></i>-->
+                    <div class="sticky">
+                      <q>
+                        <i class="icon-quote-left icon-large" style="color:rgb(190, 190, 190)"></i>
+                        <%= movie.userDefinedSummary %>&nbsp;
+                        <i class="icon-quote-right icon-large" style="color:rgb(190, 190, 190)"></i>
+                    </q>
+                    </div>
+            <% } %>
+        </div>
+        <div class="span3">
+            <% if(typeof movie.favorited != 'undefined' && movie.favorited.length != 0){ %>
+                <div>
+                    <a href="/movie/showusersfavoritedmovie/<%=movie.movieId%>" class="default-grey-link">
+                        <i class="icon-heart"></i>
+                        Favorited
+                        <span style="margin-left:10px"><%= movie.favorited.length %></span>
+                    </a>
+                </div>
+                <hr>
+            <% } %>
+            <div>
+                <% if(typeof movie.associatedTags != 'undefined' && movie.associatedTags.length != 0){ %>
+                    <i class="icon-tags"></i>
+                    <span>Tags</span>
+                    <ul class="unstyled default-grey-color" style="padding-left:20px">
+                        <% for(var i=0 ; i < movie.associatedTags.length; i++){ %>
+                            <li>
+                                <a href="/movie/tags/<%=movie.associatedTags[i]%>" class="default-grey-link ellipsis">
+                                    #<%= movie.associatedTags[i] %>
+                                </a>
+                            </li>
+                        <% } %>
+                    </ul>
+                    <hr>
+                <% } %>
+            </div>
+            <div>
+                <a href="#comments" class="default-grey-link">
+                    <i class="icon-comments icon-large"></i> 
+                    <span>Comments</span>
+                    <% if(typeof movie.comments != 'undefined'){ %>
+                        <span style="margin-left:10px"><%= movie.comments.length %></span>
+                    <% } else { %>
+                        <span style="margin-left:10px">0</span>
+                    <% } %>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    <hr>
+    <div class="movie-comments">
+        <div class="movie-comment-add">
+            <h4>Comments</h4>
+            <form id="comments">
+                <textarea class="fine-box-shadow input-xxlarge" rows="3" name="comment" placeholder="Say something"></textarea>
+                <input type="hidden" name="movieid" value="<%=movie.movieId%>">
+                <br>
+                <input type="submit" class="comment-btn btn btn-info" value="Comment"/>
+            </form>
+        </div>
+        <div id="commentsLoader" class="loader-img hide"></div>
+        <div id="movieComments" class="movie-comments-container">
+            <% if(typeof movie.comments != 'undefined' && movie.comments.length > 0){ %>
+                <% for(var i=movie.comments.length-1; i>=0; i--){ %>
+                        <hr>
+                        <div>
+                            <a href="/user/showuserprofile/<%=movie.comments[i].commentorId%>">
+                                <strong><%=movie.comments[i].commentorName%></strong>
+                            </a>
+                            <span class="muted"> said </span>
+
+                        </div>
+                        <div style="margin-top:10px;">
+                            <span> <%=movie.comments[i].comment%> </span>
+                        </div>
+                <% } %>
+            <% } else{ %>
+                <span id="noCommentsMessage" class="muted">No Comments yet, be the first one to comment on it.</span>
+            <% } %>
+        </div>
+        
+    </div>
+    <!-- <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'moviespotting'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+<% include addtowishlist %>
+<% include createmovie %>
+<% include uiscripts %>
+<script type="text/javascript" src="/templates/handlebars.comment.js"></script>
+<% include footer %>

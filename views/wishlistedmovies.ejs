@@ -1,0 +1,21 @@
+<!-- Include common header -->
+<% include header %>
+    <div class="row content-area">
+        <div class="span12">
+            <h4><%= list.name %></h4>
+            by
+            <a href="/user/showuserprofile/<%=list.creatorId%>">
+                <strong><%= list.creatorName %></strong>
+            </a>
+            on
+            <strong class="muted"><%= list.creationDate.toDateString() %></strong>
+        </div>
+    </div>
+    <hr>
+    <ul class="thumbnails movie-item-container" id="movieStream">
+        <% include movietemplate %>
+    </ul>
+    
+<% include createmovie %>
+<% include uiscripts %>
+<% include footer %>

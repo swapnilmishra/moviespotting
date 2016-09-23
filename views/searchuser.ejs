@@ -1,0 +1,37 @@
+<% include header %>
+<div class="row content-area">
+	<div class="span12">
+		<div class="search-results-label">
+			<h4>Results for users with name <strong><%=query%></strong></h4>
+		</div>
+		<ul class="breadcrumb">
+			<li>
+				<a data-pjax href="/search/movie/name/<%=query%>">Movies</a>
+				<span class="divider">/</span>
+		  	</li>
+		
+			<li>
+				<a data-pjax href="/search/movie/tag/<%=query%>">Tags</a>
+				<span class="divider">/</span>
+	  		</li>
+		  	<li class="active">
+		  		Users
+		  	</li>
+		</ul>
+	</div>
+	<%if(users.length > 0){%>
+		<div class="span12">
+			<div class="search-results">
+	    		<% include searchusertemplate %>
+	   		</div>
+	   	<div>
+	<%}%>
+	<div class="span12"> 
+		<%if(users.length == 0){%>
+			<h5 style="margin-left:10px">No users found</h5>
+		<%}%>
+	</div>
+</div>
+<% include createmovie %>
+<% include uiscripts %>
+<% include footer %>

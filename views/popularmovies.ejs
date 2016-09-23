@@ -1,0 +1,27 @@
+<!-- Include common header -->
+<% include header %>
+<!-- Content goes here -->
+      
+<div class="row content-area">
+    <div class="span12">
+    	<h4>
+    		<ul class="breadcrumb">
+    			<%if( title == "Popular movies") { %>
+    				<li class="active"><%=title%><span class="divider">/</span></li>
+    				<li><a href="/explore/recentmovies">Recently shared movies</a></li>
+    			<% } else { %>
+    				<li><a href="/explore/popularmovies">Popular movies</a><span class="divider">/</span></li>
+    				<li class="active"><%=title%></li>
+    			<% } %>
+    		</ul>
+    	</h4>
+    	<hr>
+    	<ul class="thumbnails movie-item-container" id="movieStream">
+        	<% include movietemplate %>
+       	</ul>
+    </div>
+</div>
+<% include createmovie %>
+<% include uiscripts %>
+<!-- Include common footer -->
+<% include footer %>

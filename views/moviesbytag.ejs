@@ -1,0 +1,16 @@
+<!-- Include common header -->
+<% include header %>
+<!-- Content goes here -->
+      
+<div class="row">
+    <div class="span12">
+    	<h3>Showing movies for #<%= tag %></h3><br><br>
+    	<ul class="thumbnails movie-item-container" id="movieStream">
+        	<% include movietemplate %>
+       	</ul>
+    </div>
+</div>
+<% include createmovie %>
+<% include uiscripts %>
+<!-- Include common footer -->
+<% include footer %>

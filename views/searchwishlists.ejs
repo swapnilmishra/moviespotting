@@ -1,0 +1,28 @@
+<% include header %>
+<div class="row">
+	<ul class="nav nav-pills">
+		<li>
+			<a data-pjax href="/search/movie/name/<%=query%>"><i class="icon-film"></i>Movies</a>
+	  	</li>
+	
+		<li>
+			<a data-pjax href="/search/movie/tag/<%=query%>"><i class="icon-tags"></i>Tags</a>
+  		</li>
+	  	<li>
+	  		<a data-pjax href="/search/user/<%=query%>"><i class="icon-user"></i>Users</a>
+	  	</li>
+	  	<li class="active">
+	  		<a data-pjax href="/search/wishlist/name/<%=query%>"><i class="icon-bookmark"></i>Wishlists</a>
+	  	</li>
+	</ul>
+</div>
+<div class="row">
+	<div class="span12">
+		<ul class="thumbnails movie-item-container search-results" id="movieStream">
+			<% include searchwishlisttemplate %>
+		</ul>
+	</div>
+</div>
+<% include createmovie %>
+<% include uiscripts %>
+<% include footer %>

@@ -1,0 +1,6 @@
+<div class="media">
+    <img class="media-object pull-left img-rounded" src="{{thumbUrl}}" style="width:34px;height:34px;">
+    <div class="media-body">
+      <h5 class="media-heading">{{name}}</h5>
+    </div>
+  </div>

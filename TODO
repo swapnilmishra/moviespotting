@@ -1,0 +1,19 @@
+TODO
+
+1. Set up new EC2 instance
+	installing nodejs, mongodb, change FB app callback url, copy forever scripts from other EC2, install node modules, change godaddy A record for redirection
+2. DB init script
+
+------------------------------------------------------------------
+
+1. 	Remove typeahead and use selectize.
+2. 	Javascript optimizations and organization. Lazy load may be.
+3. 	Notification for following and movie being added to favorite.
+4. 	Save movie genre also to build users taste engine.
+5. 	Images loaded plugin, css transitions on image, lazy loading/ pagination.
+6. 	Javascript optimization. Collect all the global variables on init. Do not query them all the time
+
+Primary blue #49afcd
+Gradient #5bc0de,#2f96b4
+
+Primary Red #da4f49

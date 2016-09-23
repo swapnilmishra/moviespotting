@@ -1,0 +1,37 @@
+<li class="span3">
+      <div class="movie-item-inner-container shadow">
+
+        <div class="movie-item">
+          <a href="/movie/showmovie/{{movieId}}">
+            <img src="{{coverPhoto}}" class="movie-image-thumb">
+          </a>
+          <ul class="inline movie-status-toolbar">
+            <li><button class="btn btn-small btn-info" data-syslist="wanttowatch" data-movieid="{{movieId}}">Want to watch</button></li>
+            <li><button class="btn btn-small" data-syslist="watched" data-movieid="{{movieId}}">Watched</i></button></li>
+          </ul>
+        </div>
+
+        <div class="movie-title">
+          <span class="ellipsis">{{name}}</span>
+        </div>
+
+        <ul class="inline toolbar">  
+          <li class="right favorite" data-favorited="n" data-movieid="{{movieId}}">
+            <i class="icon-heart icon-large" data-toggle='tooltip' title='Add to favorite' data-placement='top'></i>&nbsp;0
+          </li>
+          <li>
+            <i class="default-grey-link icon-bookmark icon-large wishlist" data-toggle='tooltip' title='Add to wishlist' data-placement='top' data-movieid="{{movieId}}"></i>
+          </li>
+          <li>
+            <a href="/movie/showmovie/3#disqus_thread" class="default-grey-link">
+              <i class="icon-comments icon-large" data-toggle="tooltip" title="" data-placement="top" data-original-title="Comments">&nbsp;</i>
+            </a>
+          </li>
+        </ul>
+
+        <div class="movie-item-footer">
+          <span class="default-grey-color"> by </span>
+          <a href="/user/showuserprofile">{{creatorName}}</a>
+        </div>
+      </div>
+    </li>

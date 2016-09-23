@@ -1,0 +1,51 @@
+<% include header %>
+<div class="row content-area">
+	<div class="span12">
+		<% if(typeof type != 'undefined' && type == 'name'){ %>
+			<div class="search-results-label">
+				<h4>Results for movie with name <strong><%=query%></strong></h4>
+			</div>	
+		<% } else { %>
+			<div class="search-results-label">
+				<h4>Results for movie with tag <strong><%=query%></strong></h4>
+			</div>
+		<% } %>
+		
+		<ul class="breadcrumb">
+			
+			<% if(typeof type != 'undefined' && type == 'name'){ %>
+				<li class="active">Movies<span class="divider">/</span>
+		  		</li>
+			<% } else { %>
+				<li>
+					<a data-pjax href="/search/movie/name/<%=query%>">Movies</a>
+					<span class="divider">/</span>
+			  	</li>
+			<% } %>
+		  	<% if(typeof type != 'undefined' && type == 'tag'){ %>
+				<li class="active">Tags<span class="divider">/</span>
+		  		</li>
+			<% } else { %>
+				<li>
+					<a data-pjax href="/search/movie/tag/<%=query%>">Tags</a>
+					<span class="divider">/</span>
+		  		</li>
+			<% } %>
+		  	<li>
+		  		<a data-pjax href="/search/user/<%=query%>">Users</a>
+		  	</li>
+		</ul>
+
+		<%if(movies.length > 0){%>
+    		<ul class="thumbnails movie-item-container search-results" id="movieStream">
+        		<% include movietemplate %>
+       		</ul>
+    	<%}%>
+    	<%if(movies.length == 0){%>
+    		<h5 style="margin-left:10px">No movies found</h5>
+    	<%}%>
+	</div>
+</div>
+<% include createmovie %>
+<% include uiscripts %>
+<% include footer %>

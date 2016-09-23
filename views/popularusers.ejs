@@ -1,0 +1,16 @@
+<% include header %>
+<div class="row content-area">
+	<div class="span12">
+		<h4>Popular Users</h4>
+	<hr>
+		<%if(users.length > 0){%>
+        	<% include searchusertemplate %>
+    	<%}%>
+    	<%if(users.length == 0){%>
+    		<h4>No users found</h4>
+    	<%}%>
+	</div>
+</div>
+<% include createmovie %>
+<% include uiscripts %>
+<% include footer %>

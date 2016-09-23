@@ -1,0 +1,69 @@
+<!-- Include common header -->
+<% include header %>
+    <div class="row content-area">
+        <div class="span12">
+                <% include userprofileheader %>
+            <div class="row">
+                <div class="span12 profile-label"><h4><%= title %></h4></div>
+            </div>
+
+            <% if(userProfile.userId == userData.userId && followings.length == 0) { %>
+                <div class="no-result">
+                    You are not following anyone yet!! Following someone is great way to keep up to date with the latest happenings.
+                    <a href="/explore/popularusers" data-toggle="modal">
+                        Explore
+                    </a>
+                    or Search users to follow to get their updates.
+                </div>
+            <% } %>
+
+            <% for(var i=0; i< followings.length; i++) { %>
+                <!-- Show list of followers-->
+                <div class="row">
+                    <div class="span2">
+                      <% if(typeof followings[i].userDp !== 'undefined' && followings[i].userDp !== ''){ %>
+                          <img src="<%=followings[i].userDp%>" class='profile-img-thumb img-circle'>
+                      <% } %>
+                      <% if(typeof followings[i].userDp === 'undefined' || followings[i].userDp === ''){ %>
+                          <div>
+                            <img class="img-circle profile-img-thumb" src="/images/default_user.png"/>
+                          </div>
+                      <% } %>
+                    </div>
+                    <div class="span4">
+                      <a href="/user/showuserprofile/<%=followings[i].userId%>"><h4><%= followings[i].userDisplayName %></h4></a>
+                      <div class="row">
+                        <div class="span1 elem-right-border text-center">
+                          <strong><small> <%= followings[i].moviesCount %> </small></strong> 
+                          <div><small>Movies</small></div>
+                        </div>
+                        <div class="span1 text-center">
+                          <strong><small> <%= followings[i].followers.length %> </small></strong> 
+                          <div><small>Followers</small></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="span6">
+                      <br>
+                      <% if((followings[i].userId !== userData.userId)){ %>
+                        <% if(followings[i].isFollowing === "y"){ %>
+                          <button class="btn btn-info btn-small follow-unfollow" following="y" userId="<%=followings[i].userId%>">
+                              Following
+                          </button>
+                        <% } %>
+                        <% if(followings[i].isFollowing === "n"){ %>
+                          <button class="btn btn-secondary btn-small follow-unfollow" following="n" userId="<%=followings[i].userId%>">
+                              Follow
+                          </button>
+                        <% } %>
+                      <% } %>
+                    </div>
+                </div>
+                <hr>
+            <% } %>
+        </div>
+    </div>
+
+<% include createmovie %>
+<% include uiscripts %>
+<% include footer %>

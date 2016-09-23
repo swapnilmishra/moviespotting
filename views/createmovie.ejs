@@ -1,0 +1,90 @@
+<input id="userName" type="hidden" value="<%= userData.userDisplayName %>"/>
+<input id="userEmailId" type="hidden" value="<%= userData.userEmailId %>"/>
+
+<!-- form to hold create movie which is being used in popover-->
+<div class="modal hide fade" id="createMovieModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+  <div class="modal-header" style="padding-left:100px;">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      <i class="icon-remove-circle icon-large"></i>
+    </button>
+    <h3 id="myModalLabel">Share a movie</h3>
+  </div>
+
+  <div class="modal-body">
+
+    <div class="createMovieBlock pull-left">
+
+      <form id="createMovieForm">
+
+        <input type="text" class="input-xlarge" id="movieName" class="typeahead" name="moviename" placeholder="What's your movie name ?"/>
+
+        <!--
+        <div id="facebookG" class="loader pull-right hide">
+          <div id="blockG_1" class="facebook_blockG">
+          </div>
+          <div id="blockG_2" class="facebook_blockG">
+          </div>
+          <div id="blockG_3" class="facebook_blockG">
+          </div>
+        </div>
+        -->
+        <div class="pull-right hide loader loader-img"></div>
+
+        <div id="createMovieOtherParams" class="hide">
+          <textarea id="userDefinedSummary" class="input-xlarge" name="userDefinedSummary" placeholder="Write few lines about movie in your words or select summary from right" style="height:180px;"></textarea>
+
+          <select id="select-tags" multiple class="demo-default" style="width:284px;" placeholder="Select or enter tags...">
+          </select>
+
+          <input type="hidden" id="associatedTags" class="input-xlarge" name="associatedTags"/>
+          <!--<p class="muted">Tag Suggestions</p>
+          <ul class="inline" id="suggestedTags">
+          </ul>-->
+
+          <label class="radio inline">
+            <input type="radio" name="watchStatus" id="watchedRadio" value="watched"> Watched
+          </label>
+          <label class="radio inline">
+            <input type="radio" name="watchStatus" id="wantToWatchRadio" value="wanttowatch" > Want to watch
+          </label>
+
+          <!-- Hidden fields to be sent to backend -->
+          <input type="hidden" name="movieid" id="movieId"/>
+          <input type="hidden" name="imageurl" id="imageUrl"/>
+          <input type="hidden" name="yearofrelease" id="yearOfRelease"/>
+          <input type="hidden" name="genres" id="genres"/>
+          <input type="hidden" id="userId" name="userId" value="<%= userData.userId %>"/>
+          <input type="hidden" id="userName" name="userName" value="<%= userData.userDisplayName %>"/>
+        </div>
+      </form>
+
+    </div>
+
+    <div class="well pull-right hide" id="movieSummaryBlock">
+      <div class="alert alert-info hide">
+        <input type="checkbox" id="useSummaryChk">
+        <strong>Use this as summary</strong>
+      </div>
+      <div class="media">
+        <img id="mdbImage" class="media-object pull-left img-rounded" src="">
+        <div class="media-body">
+          <div class="mdbSummary">
+            <div class="summary-block">
+                <h4 class="media-heading" id="mdbTitle"></h4>
+                <div id="mdbSummary">
+                
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn movieFormCancelBtn" data-dismiss="modal">Cancel</button>
+    <button class="btn btn-info" id="createMovieFormBtn" onclick="createMovie()">Share</button>
+  </div>
+</div>

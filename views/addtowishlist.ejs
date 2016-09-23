@@ -1,0 +1,34 @@
+<div class="modal hide fade" id="addToWishListModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+  <div class="modal-header" style="padding-left:100px;">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      <i class="icon-remove-circle icon-large"></i>
+    </button>
+    <h3 id="myModalLabel">Add to list</h3>
+  </div>
+
+  <div class="modal-body">
+
+    <h4>Add to existing lists</h4>
+    <div id="wishListLoader" class="loader-img hide">
+    </div>
+    <div id="userWishListBlock" class="hide">
+      <div id="userWishlists"></div>
+    </div>
+    <div style="width:350px;padding-left:30%">
+      <h5 style="width:25px;padding: 4px;" class="rounded-border">or</h5>
+    </div>
+
+    <h4>Create a new list</h4>
+    <div class="input-append">
+      <input type="text" id="newWishListName" class="input-large" placeholder="List name">
+      <button class="btn btn-info" onclick='createWishlist()'>Create</button>
+    </div>
+    
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal">Done</button>
+  </div>
+
+</div>

@@ -1,0 +1,73 @@
+<!-- Include common header -->
+<% include header %>
+<!-- Content goes here -->
+<div class="row content-area">
+    <div class="span12">
+        <div class="row profile-label">
+            <div class="span10">
+                <div class=""><h4>Activities</h4></div>
+            </div>
+            <div class="span2">
+                <button class="btn btn-info btn-small" style="margin-top:5px;float:right" onclick="clearNewActivities()"> Clear New</button>
+            </div>
+        </div>
+    <% if(stream.length == 0) { %>
+        <div class="no-result">
+            <div>
+                No activity yet !!
+                <a href="/explore/popularusers" data-toggle="modal">
+                    Explore
+                </a>
+                or Search users to follow and have their updates appear in your activity stream.
+            </div>
+        </div>
+    <% } %>
+    <%if(stream.length != 0){%>
+	  <section class="comments" id="activityStream">
+	  	<%for(var i=0; i<stream.length; i++){%>
+	    <article class="comment">
+        <!-- 
+          <a class="comment-img" href="#non">
+	        <img src="/images/default_user.png" alt="" width="50" height="50">
+	      </a>
+        -->
+        <%if(stream[i].userRead.indexOf(userData.userId) == -1 ){ %>
+            <span class="label label-important comment-img" data-activity-id="<%=stream[i].actId%>" data-activity-new="y">new</span>
+        <% } %>
+	      <div class="comment-body">
+	        <div class="text">
+	        	<%if(stream[i].targetObj.objType == "user"){ %>
+    				<div>
+    					<a href="/user/showuserprofile/<%=stream[i].actor.id%>"><%=stream[i].actor.name%></a>
+    					<span><%=stream[i].verb%></span>
+    					<a href="/user/showuserprofile/<%=stream[i].targetObj.id%>"><%=stream[i].targetObj.name%></a>
+    				</div>
+    			<% } %>
+    			<%if(stream[i].targetObj.objType == "syslist"){ %>
+    				<div>
+    					<a href="/user/showuserprofile/<%=stream[i].actor.id%>"><%=stream[i].actor.name%></a>
+    					<span><%=stream[i].targetObj.name%></span>
+    					<a href="/movie/showmovie/<%=stream[i].metaObj.id%>"><%=stream[i].metaObj.name%></a>
+    				</div>
+    			<% } %>
+    			<%if(stream[i].targetObj.objType == "list"){ %>
+    				<div>
+    					<a href="/user/showuserprofile/<%=stream[i].actor.id%>"><%=stream[i].actor.name%></a>
+    					<span><%=stream[i].verb%></span>
+    					<a href="/movie/showmovie/<%=stream[i].metaObj.id%>"><%=stream[i].metaObj.name%></a>
+    					to <a href="/list/showwishlist/<%=stream[i].targetObj.id%>"><%=stream[i].targetObj.name%></a>
+    				</div>
+    			<% } %>
+	        </div>
+	        <p class="attribution" style="font-size:12px;color:#aaa">on <%=stream[i].date.toDateString() %></p>
+	      </div>
+	    </article>
+	    <% } %>
+	  </section>​
+      <% } %>
+    </div>
+</div>
+<% include createmovie %>
+<!-- Include common footer -->
+<% include uiscripts %>
+<% include footer %>

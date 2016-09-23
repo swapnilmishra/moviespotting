@@ -1,0 +1,32 @@
+{
+  "name": "moviespotting",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "3.0.4",
+    "restler": "*",
+    "ejs": "*",
+    "mongodb": "*",
+    "mongoose": "*",
+    "underscore": "*",
+    "passport": "*",
+    "passport-facebook": "*",
+    "passport-local": "*",
+    "connect-flash": "*",
+    "moviedb": "*",
+    "async": "*",
+    "email-templates": "*",
+    "mandrill-api": "*"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-cssmin": "~0.6.1",
+    "grunt-contrib-handlebars": "~0.5.10",
+    "grunt-autoprefixer": "~0.2.20130718",
+    "grunt-text-replace": "~0.3.6"
+  }
+}

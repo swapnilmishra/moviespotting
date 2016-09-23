@@ -1,0 +1,39 @@
+<% for(var i=0; i< users.length; i++) { %>
+    <!-- Show list of followers-->
+    <div class="row">
+        <div class="span2">
+            <% if(typeof users[i].userDp !== 'undefined' && users[i].userDp !== ''){ %>
+                <img src="<%=users[i].userDp%>" class='img-circle profile-img-thumb'>
+            <% } %>
+            <% if(typeof users[i].userDp === 'undefined' || users[i].userDp === ''){ %>
+              <div class="profile-no-image-thumb">
+                <img class="img-circle profile-img-thumb" src="/images/default_user.png"/>
+              </div>
+          <% } %>
+        </div>
+        <div class="span4">
+          <a href="/user/showuserprofile/<%=users[i].userId%>"><h4><%=users[i].userDisplayName %></h4></a>
+          <div class="row">
+            <div class="span1 elem-right-border text-center">
+              <strong><small> <%= users[i].moviesCount %></small></strong> 
+              <div><small>Movies</small></div>
+            </div>
+            <div class="span1 text-center">
+              <strong><small> <%= users[i].followers.length %> </small></strong> 
+              <div><small>Followers</small></div>
+            </div>
+          </div>
+        </div>
+        <%if (userProfile.userId !== users[i].userId) { %>
+          <div class="span6">
+            <br>
+            <% if (userProfile.following.indexOf(users[i].userId) == -1 ) { %>
+              <button class="btn btn-secondary btn-small follow-unfollow" following="n" userid="<%=users[i].userId%>">Follow</button>
+            <% } else { %>
+              <button class="btn btn-small follow-unfollow btn-info" following="y" userid="<%=users[i].userId%>">Following</button>
+            <% } %> 
+          </div>
+        <% } %>
+    </div>
+    <hr>
+<% } %>

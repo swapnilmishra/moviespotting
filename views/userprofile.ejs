@@ -1,0 +1,39 @@
+<!-- Include common header -->
+<% include header %>
+    <div class="row content-area">
+        <div class="span12">
+                <% include userprofileheader %>
+            <div class="row">
+                <div class="span12 profile-label">
+                    <h4><%= title %></h4>
+                    <!-- <div class="colored-div"></div> -->
+                </div>
+            </div>
+            <% if(userProfile.userId == userData.userId && movies.length == 0 && title == 'Movies Created') { %>
+                <div class="no-result">
+                    <span>Oops !! Looks like you haven't shared a movie yet.</span>
+                    <a href="#createMovieModal" data-toggle="modal">
+                        Start Sharing
+                    </a>
+                </div>
+            <% } %>
+            <% if(userProfile.userId == userData.userId && movies.length == 0 && title == 'Movies Favorited') { %>
+                <div class="no-result">
+                    <div>
+                        There aren't any movies marked as favorite.
+                        Click on <i class="icon-heart" style="cursor:default;color:#da4f49"></i> icon of a shared movie to add it to favorite.
+                    </div>
+                    <div>
+                        Go to your <a href="/">Home</a> or <a href="/explore/popularmovies">Explore</a> popular movies.
+                    </div>
+                </div>
+            <% } %>
+            <ul class="thumbnails movie-item-container" id="movieStream">
+                <% include movietemplate %>
+            </ul>
+        </div>
+    </div>
+
+<% include createmovie %>
+<% include uiscripts %>
+<% include footer %>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<head>
+	<meta charset="utf-8" />
+
+	<!-- Set the viewport width to device width for mobile -->
+	<meta name="viewport" content="width=device-width" />
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<meta name="description" content="">
+  	<meta name="author" content="">
+
+	<% if(typeof title !== 'undefined') { %>
+    <title><%= title %></title>
+  <% } else { %>
+    <title>MovieSpotting</title>
+  <% } %>
+
+	<style type="text/css">
+		body{
+			background-image:url('/images/back1.jpg') !important;
+			background-repeat: no-repeat !important;
+			background-size: 100% !important;
+		}
+		html,body,.main-container{
+			height: 100%;
+		}
+	</style>
+
+	<link href="/css/moviespotting.min.css?ver=version_stamp" rel="stylesheet">
+	<!-- Le styles 
+    
+  	<link href="/css/bootstrap.min.css" rel="stylesheet">
+  	<link href="/css/font-awesome.css" rel="stylesheet">
+  	<link href="/css/style.css" rel="stylesheet">
+	-->
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+  <!-- Page Layout HTML here -->
+  	<div class="container" style="margin-top:15px;">
+  		<a href="/login"><img src="/images/logo.png"></a>
+  	</div>
+    <div class="container main-container">
+		<div class="row">
+			<div class="span5">
+				<div class="row">
+				  	<div class="span4 sign-in-form">
+				  		<a href="/auth/facebook" class="facebook-button" data-toggle='tooltip' data-placement='top' title="Will not post anything">
+					    	<i class="icon-facebook"></i> &nbsp;
+					    	Login With Facebook
+					    </a>
+					    <div class="division-or">
+					    	<div>or</div>
+					    </div>
+					    <div>
+						    <form action="/userlogin" method="post" id="sign-in-form">
+						        <% if (typeof message !== 'undefined' && message !== ''){ %>
+									<div class="alert alert-error">
+										<%= message %>
+									</div>
+								<% } %>
+								
+									<div class="input-prepend">
+										<span class="add-on"><i class="icon-user"></i></span>
+										<input class="input-large login-input" type="text" name="username" placeholder="Email id">
+									</div>
+									<div class="input-prepend">
+										<span class="add-on"><i class="icon-lock"></i></span>
+										<input class="input-large login-input" type="password" name="password" placeholder="Password">
+									</div>
+									
+									<button type="submit" class="btn btn-info btn-medium">Sign In</button>
+									<div class="signUpLink pull-right">
+										<span>or&nbsp;&nbsp;</span>
+										<a href="/signup" class="main-text">Sign Up with Email</a>
+									</div>
+						    </form>
+					    </div>
+					</div>
+				</div>
+			</div>
+			<div class="span7" style="color:#fff">
+				<h1>Your next favorite movie is here !</h1>
+			</div>
+
+		</div>
+	<div class="container no-result" style="position:absolute;bottom:25px;">
+        <div style="color:#fff;">
+            <span>Made with</span>
+            <i class="icon-heart" style="cursor:default;color:#da4f49"></i>
+            <span>in Bangalore,IN</span>
+        </div>
+	</div>
+<% include uiscripts %>
+<% include footer %>

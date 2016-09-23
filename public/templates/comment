@@ -1,0 +1,11 @@
+<hr>
+<div>
+    <a href="/user/showuserprofile/{{commentorId}}">
+        <strong>{{commentorName}}</strong>
+    </a>
+    <span class="muted"> said </span>
+
+</div>
+<div style="margin-top:10px;">
+    <span> {{comment}} </span>
+</div>

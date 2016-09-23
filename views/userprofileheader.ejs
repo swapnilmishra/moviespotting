@@ -1,0 +1,215 @@
+<div class="row profile-container">
+  <div class="span2">
+    <% if(userProfile.userId === userData.userId){ %>
+
+      <% if(typeof userProfile.userDp === 'undefined' || userProfile.userDp === ''){ %>
+        <div class='profile-pic-container'>
+            <img class="img-rounded" src="/images/default_user.png"/>
+          <ul class='inline'>
+              <li>
+                <a href="#profilePicUploadModal" class='default-grey-link' data-toggle="modal">
+                <i class='icon-pencil icon-large' data-toggle='tooltip' title='Edit profile pic' data-placement='bottom'></i>
+                </a>
+              </li>
+          </ul>
+        </div>
+      <% } %>
+
+      <% if(typeof userProfile.userDp !== 'undefined' && userProfile.userDp !== ''){ %>
+          <div class="profile-pic-container">
+            <img src="<%= userProfile.userDp %>" class="img-rounded profile-img">
+              <ul class='inline'>
+              <li>
+                <a href="#profilePicUploadModal" class='default-grey-link' data-toggle="modal">
+                <i class='icon-pencil icon-large' data-toggle='tooltip' title='Edit profile pic' data-placement='bottom'></i> 
+                </a>
+              </li>
+              <li>
+                <a href="#profilePicDeleteModal" class='default-grey-link' data-toggle="modal">
+                <i class='icon-trash icon-large' data-toggle='tooltip' title='Delete profile pic' data-placement='bottom'></i>
+              </a>
+              </li>
+            </ul>
+          </div>
+      <% } %>
+
+    <% } %>
+
+    <% if(userProfile.userId !== userData.userId){ %>
+
+      <% if(typeof userProfile.userDp === 'undefined' || userProfile.userDp === ''){ %>
+        <div>
+          <img class="img-rounded" src="/images/default_user.png"/>
+        </div>
+      <% } %>
+
+      <% if(typeof userProfile.userDp !== 'undefined' && userProfile.userDp !== ''){ %>
+          <img src="<%= userProfile.userDp %>" class="img-rounded profile-img">
+      <% } %>
+
+    <% } %>
+
+  </div>
+  <div class="span5">
+    <h3><%= userProfile.userDisplayName %></h3>
+    <% if(userProfile.userId !== userData.userId && typeof isFollowing !== 'undefined' && isFollowing === "y"){ %>
+      <button class="btn btn-small btn-info follow-unfollow" following="y" userId="<%=userProfile.userId%>">
+        Following
+      </button>
+    <% } %>
+    <% if(userProfile.userId !== userData.userId && typeof isFollowing !== 'undefined' && isFollowing === "n"){ %>
+      <button class="btn btn-small btn-secondary follow-unfollow" following="n" userId="<%=userProfile.userId%>">
+        Follow
+      </button>
+    <% } %>
+  </div>
+  <div class="span5 text-center">
+    <div class="row">
+      <div class="span1">
+        <h3>
+          <%if(title == "Movies Created"){%>
+            <%if(typeof userProfile.moviesCount == 'undefined'){%>
+              0
+            <%}else{%>
+              <%= userProfile.moviesCount %>
+            <%}%>
+          <% } else { %>
+            <a href="/user/showuserprofile/<%=userProfile.userId%>">
+              <%if(typeof userProfile.moviesCount == 'undefined'){%>
+                0
+              <%} else { %>
+                <%= userProfile.moviesCount %>
+              <%}%>
+            </a>
+          <% } %>
+          
+        </h3>
+        Movies
+      </div>
+      <div class="span1">
+        <h3>
+           <%if(title == "Movies Favorited"){%>
+            <%if(typeof userProfile.favoritedMovies == 'undefined'){%>
+              0
+            <%} else {%>
+              <%= userProfile.favoritedMovies.length %>
+            <%}%>
+           <% } else { %>
+            <a href="/user/showfavoritemovies/<%=userProfile.userId%>">
+              <%if(typeof userProfile.favoritedMovies == 'undefined'){%>
+                0
+              <%} else {%>
+                <%= userProfile.favoritedMovies.length %>
+              <%}%>
+            </a>
+           <% } %>
+        </h3>
+        Favorites
+      </div>
+      <div class="span1">
+        <h3>
+          <%if(title == "Followers"){%>
+            <%if(typeof userProfile.followers == 'undefined'){%>
+              0
+            <% } else { %>
+              <%= userProfile.followers.length %>
+            <%}%>
+          <% } else { %>
+            <a href="/user/showfollowers/<%=userProfile.userId%>">
+              <%if(typeof userProfile.followers == 'undefined'){%>
+                0
+              <% } else { %>
+                <%= userProfile.followers.length %>
+              <%}%>
+            </a>
+          <% } %> 
+        </h3>
+        Followers
+      </div>
+      <div class="span1">
+        <h3>
+          <%if(title == "Following"){ %>
+            <%if(typeof userProfile.following == 'undefined'){%>
+              0
+            <%}%>
+            <%if(typeof userProfile.following != 'undefined'){%>
+              <%= userProfile.following.length %>
+            <%}%>
+          <% } else { %>
+            <a href="/user/showfollowings/<%=userProfile.userId%>">
+              <%if(typeof userProfile.following == 'undefined'){%>
+                0
+              <%}%>
+              <%if(typeof userProfile.following != 'undefined'){%>
+                <%= userProfile.following.length %>
+              <%}%>
+            </a>
+          <% } %>
+        </h3>
+        Following
+      </div>
+      <div class="span1">
+        <h3>
+          <%if(title == "Lists"){ %>
+            <%if(typeof userProfile.wishListCount == 'undefined'){%>
+              0
+            <% } else { %>
+              <%= userProfile.wishListCount %>
+            <%}%>
+          <% } else { %>
+            <a href="/list/showwishlists/<%=userProfile.userId%>">
+              <%if(typeof userProfile.wishListCount == 'undefined'){%>
+                0
+              <%} else { %>
+                <%= userProfile.wishListCount %>
+              <%}%>
+            </a>
+          <% } %>
+        </h3>
+        List
+      </div>
+    </div>
+  </div>
+</div>
+<!-- user profile image change popup-->
+<div class="modal hide fade" id="profilePicUploadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+  <div class="modal-header" style="padding-left:100px;">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      <i class="icon-remove-circle icon-large"></i>
+    </button>
+    <h3 id="myModalLabel">Upload Profile pic</h3>
+  </div>
+
+  <div class="modal-body" style="padding-left:50px;">
+    <form method='post' action='/user/profilepic/upload' enctype='multipart/form-data' id='profilePicUploadForm'>
+      <fieldset>
+        <input type="file" name="image" style='line-height:16px;'/>
+      </fieldset>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+    <button class="btn btn-info" onclick="uploadProfilePic()">Upload</button>
+  </div>
+</div>
+
+<div class="modal hide fade" id="profilePicDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+  <div class="modal-header" style="padding-left:100px;">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      <i class="icon-remove-circle icon-large"></i>
+    </button>
+    <h3 id="myModalLabel">Remove Profile pic</h3>
+  </div>
+
+  <div class="modal-body" style="padding-left:50px;">
+    Are you sure you want to remove profile pic ?
+  </div>
+
+  <div class="modal-footer">
+    <a class="btn" data-dismiss="modal" aria-hidden="true">Cancel</a>
+    <a href="/user/removeprofilepic" class="btn btn-danger">Delete</a>
+  </div>
+</div>

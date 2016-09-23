@@ -1,0 +1,14 @@
+<%for(var i=0; i<wishLists.length; i++){%>
+	<div class="row">
+		<div class="span12">
+			<a href="/list/showwishlist/<%=wishLists[i].listId%>">
+          		<h4><%=wishLists[i].name %></h4>
+        	</a>
+        	<div>
+              <strong><small> <%= wishLists[i].movies.length %></small></strong>
+              <small>Movies</small>
+            </div>
+		</div>
+    </div>
+    <hr>
+<%} %>

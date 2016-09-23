@@ -1,0 +1,62 @@
+<% for(var i=0; i < movies.length; i++) {%>
+  <li class="span3">
+    <div class="movie-item-inner-container shadow">
+      <!--
+      <div class="movie-date">
+        <i class="icon-calendar"></i>&nbsp;<strong class="timestamp"><%= movies[i].creationDate.toDateString() %></strong>
+      </div>
+      -->
+      <div class="movie-item">
+        <a href="/movie/showmovie/<%= movies[i].movieId%>">
+          <img src="<%= movies[i].coverPhoto %>" class="movie-image-thumb">
+        </a>
+        <ul class="inline movie-status-toolbar">
+          <li><button class="btn btn-small btn-info" data-syslist="wanttowatch" data-movieid="<%= movies[i].movieId%>">Want to watch</button></li>
+          <li><button class="btn btn-small" data-syslist="watched" data-movieid="<%= movies[i].movieId%>">Watched</i></button></li>
+        </ul>
+      </div>
+
+      <div class="movie-title">
+          <span class="ellipsis"><%= movies[i].name%></span>
+      </div>
+      <ul class="inline toolbar">
+          <% if(typeof movies[i].favorited !== 'undefined') { %>
+              <!-- favorited = no-->
+              <% if(movies[i].favorited.indexOf(userData.userId) === -1 ){ %>
+                <li class="favorite" data-favorited="n" data-movieid="<%= movies[i].movieId%>">
+                  <i class="icon-heart icon-large" data-toggle='tooltip' title='Favorite' data-placement='top'>&nbsp;</i><span><%= movies[i].favorited.length %></span>
+                </li>
+              <% } %>
+              <!-- favorited = yes-->
+              <% if(movies[i].favorited.indexOf(userData.userId) !== -1 ) { %>
+                  <li class="favorite favorited" data-favorited="y" data-movieid="<%= movies[i].movieId%>">
+                    <i class="icon-heart icon-large" data-toggle='tooltip' title='Favorite' data-placement='top'>&nbsp;</i><span><%= movies[i].favorited.length %></span>
+                  </li>
+              <% } %>
+
+          <% } %>
+          <li>
+            <i class="default-grey-link icon-bookmark icon-large wishlist" data-toggle='tooltip' title='Add/Remove from list' data-placement='top' data-movieid="<%= movies[i].movieId%>"></i>
+          </li>
+          <li>
+            <a href="/movie/showmovie/<%= movies[i].movieId%>#comments" class="default-grey-link">
+              <i class="icon-comments icon-large" data-toggle='tooltip' title='Comments' data-placement='top'></i>
+              <% if(typeof movies[i].comments != 'undefined'){ %>
+                  <span><%= movies[i].comments.length %></span>
+              <% } else { %>
+                  <span>0</span>
+              <% } %>
+            </a>
+          </li>
+        </ul>
+      <div class="movie-item-footer">
+            <span class="default-grey-color">by</span>
+            <a href="/user/showuserprofile/<%= movies[i].creatorId %>"><%= movies[i].creatorName %></a>
+      </div>
+
+    </div>
+  </li>
+<% } %>
+<%if(movies.length > 0){%>
+  <% include addtowishlist %>
+<%}%>

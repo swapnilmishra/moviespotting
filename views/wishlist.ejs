@@ -1,0 +1,36 @@
+<% include header %>
+    <div class="row content-area">
+        <div class="span12">
+            <% include userprofileheader %>
+            <div class="row">
+            	<%if(typeof title != 'undefined' ){%>
+            		<div class="span12 profile-label"><h4><%= title %></h4></div>
+            	<% } %>
+            </div>
+            <% if(userProfile.userId == userData.userId && wishLists.length == 0) { %>
+                <div class="no-result">
+                    <div>
+                        You have not created any list yet!! Lists are great for organizing your movies. Click on <i class="icon-bookmark" style="color:#49afcd"></i> icon of a shared movie to add/create list. Go to your <a href="/">Home</a> or <a href="/explore/popularmovies">Explore</a> popular movies.
+                    </div>
+                </div>
+            <% } %>
+        	<%for(var i=0; i<wishLists.length; i++){%>
+        		<div class="row">
+        			<div class="span12">
+        				<a href="/list/showwishlist/<%=wishLists[i].listId%>">
+		              		<h4><%=wishLists[i].name %></h4>
+		            	</a>
+		            	<div>
+		                  <strong><small> <%= wishLists[i].movies.length %></small></strong> 
+		                  <small>Movies</small>
+		                </div>
+        			</div>
+	            </div>
+	            <hr>
+        	<%} %>
+        </div>
+    </div>
+
+<% include createmovie %>
+<% include uiscripts %>
+<% include footer %>
