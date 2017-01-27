@@ -41,7 +41,7 @@ exports.getMovies = function(req,res){
 			query:query,
 			search_type: 'ngram'
 		},
-		imageBaseUrl = 'http://d3gtl9l2a4fn1j.cloudfront.net/t/p/',
+		imageBaseUrl = 'https://image.tmdb.org/t/p/',
 		thumbSize = 'w92',
 		bigSize = 'w342',
 		normalSize = 'w185';
@@ -118,7 +118,7 @@ exports.createMovie = function(req,res){
 
 	var userData = req.session.passport.user
 		,request = req.query
-		,imageBaseUrl = 'http://d3gtl9l2a4fn1j.cloudfront.net/t/p/'
+		,imageBaseUrl = 'https://image.tmdb.org/t/p/'
 		,thumbSize = 'w92'
 		,normalSize = 'w185'
 		,largeSize = 'w342'

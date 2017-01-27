@@ -269,7 +269,9 @@ passport.use(new FacebookStrategy({
               console.log("Error=>" + error);
             }
             else {
-              common.sendMail(userInfo);
+              if(process.env != 'development'){
+                common.sendMail(userInfo);
+              }
               done(null,userInfo);
             }
           }); // end save

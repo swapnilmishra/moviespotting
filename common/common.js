@@ -128,7 +128,9 @@ exports.userSignup = function(req,res){
 					}
 					else {
 						res.send({"message": "Your account created successfully, Please <a href='/login'>log in</a>"});
-						exports.sendMail(userData);
+						if(process.env != 'development'){
+							exports.sendMail(userData);
+						}
 					}
 				});
 			});

@@ -268,7 +268,7 @@ function addMovieTemplate(movieData){
 
 // return current movies data if it's movie stream page
 function getMovieData(movieId){
-  var imageBaseUrl = 'http://d3gtl9l2a4fn1j.cloudfront.net/t/p/'
+  var imageBaseUrl = 'https://image.tmdb.org/t/p/'
       ,normalSize = 'w185';
 
   var data = {
